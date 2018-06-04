@@ -57,8 +57,8 @@ export class DashboardComponent implements OnInit {
         if (entry.gasolineVolume) {
           this.summarizedData.totalGasolineConsumption += entry.gasolineVolume;
         }
-        if (entry.type === 'gasoline') {
-          this.summarizedData.totalGasolineCost += entry.cost;
+        if (entry.type === 'tankowanie') {
+          this.summarizedData.totalGasolineCost += Number(entry.cost);
         }
       });
     });

@@ -1,40 +1,41 @@
 <form [formGroup]='entryForm' (ngSubmit)="onSubmit()">
-<div>
+  <div class="inputs-wrapper">
+<mat-form-field class="form-field">
   <p>Data: (mm rrrr)</p>
-  <input type="text" value="{{entryBeingModified?.date}}" formControlName='date' required>
-</div>
+  <input matInput type="text" value="{{entryBeingModified?.date}}" formControlName='date' required>
+</mat-form-field>
 
-<div>
+<mat-form-field class="form-field">
   <p>Przebieg: </p>
-  <input type="text" value="{{entryBeingModified?.mileage}}" formControlName='mileage' required>
-</div>
+  <input matInput type="text" value="{{entryBeingModified?.mileage}}" formControlName='mileage' required>
+</mat-form-field>
 
-<div>
+<mat-form-field class="form-field">
   <p>Koszt: </p>
-  <input type="text" value="{{entryBeingModified?.cost}}" formControlName='cost' required>
-</div>
+  <input matInput type="text" value="{{entryBeingModified?.cost}}" formControlName='cost' required>
+</mat-form-field>
 
-  <div *ngIf="entryBeingModified?.type === 'gasoline'">
+  <mat-form-field class="form-field">
     <p>Litraż paliwa: </p>
-    <input type="text" value="{{entryBeingModified?.gasolineVolume}}" formControlName='gasolineVolume' required>
-  </div>
+    <input matInput type="text" value="{{entryBeingModified?.gasolineVolume}}" formControlName='gasolineVolume'>
+  </mat-form-field>
 
-<div>
+<mat-form-field class="form-field">
   <p>Typ: </p>
-  <select name="type" value="{{entryBeingModified?.type}}" formControlName='type' required>
-    <option value="gasoline">Tankowanie</option>
-    <option value="repair">Naprawa</option>
-    <option value="maintenance">Utrzymanie</option>
-  </select>
-</div>
+  <mat-select name="type" value="{{entryBeingModified?.type}}" formControlName='type' required>
+    <mat-option value="tankowanie">Tankowanie</mat-option>
+    <mat-option value="naprawa">Naprawa</mat-option>
+    <mat-option value="utrzymanie">Utrzymanie</mat-option>
+  </mat-select>
+</mat-form-field>
 
-<div>
+<mat-form-field class="form-field">
   <p>Opis: </p>
-  <input type="text" value="{{entryBeingModified?.description}}" formControlName='description'>
-</div>
-
-<button mat-button type="submit" [disabled]="entryForm.invalid">{{action === 'edit' ? 'Edytuj' : 'Dodaj wpis'}}sdfs</button>
+  <input matInput type="text" value="{{entryBeingModified?.description}}" formControlName='description'>
+</mat-form-field>
+  </div>
+<button mat-raised-button type="submit" [disabled]="entryForm.invalid">{{action === 'edit' ? 'Edytuj' : 'Dodaj wpis'}}</button>
 </form>
-<button mat-button (click)="goBack()">Wróć</button>
+<button mat-raised-button (click)="goBack()">Wróć</button>
 
 

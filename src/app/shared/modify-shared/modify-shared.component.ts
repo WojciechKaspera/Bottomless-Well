@@ -56,6 +56,7 @@ export class ModifySharedComponent implements OnInit {
     this.entryBeingModified.mileage = data.mileage;
     this.entryBeingModified.cost = data.cost;
     this.dataProvider.editData(this.entryBeingModified);
+    this.goBack();
   }
 
   addEntry(data) {

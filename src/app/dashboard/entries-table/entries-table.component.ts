@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort} from '@angular/material';
 import {Entry} from '../../models/entry.interface';
 import {Router} from '@angular/router';
@@ -9,7 +9,8 @@ import {DataProviderService} from '../../data-provider.service';
   templateUrl: './entries-table.component.html',
   styleUrls: ['./entries-table.component.scss']
 })
-export class EntriesTableComponent implements OnInit {
+export class EntriesTableComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort;
 
   editEntry(entryID) {
     this.dataProvider.entryBeingModifiedID = entryID;
@@ -17,13 +18,13 @@ export class EntriesTableComponent implements OnInit {
   }
 
   removeEntry(entryID) {
-this.dataProvider.removeEntry(entryID);
+    this.dataProvider.removeEntry(entryID);
   }
 
   dataSource = new MatTableDataSource();
   columns = ['mileage', 'date', 'cost', 'type', 'actions'];
 
-  @ViewChild(MatSort) sort: MatSort;
+
 
   constructor(private router: Router, private dataProvider: DataProviderService) {
   }
@@ -33,10 +34,14 @@ this.dataProvider.removeEntry(entryID);
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
     this.dataProvider.subject.subscribe((data: Entry[]) => {
+      data.sort((a, b) => a.mileage - b.mileage);
       this.dataSource.data = data;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
 }
