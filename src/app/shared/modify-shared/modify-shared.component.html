@@ -1,0 +1,40 @@
+<form [formGroup]='entryForm' (ngSubmit)="onSubmit()">
+<div>
+  <p>Data: (mm rrrr)</p>
+  <input type="text" value="{{entryBeingModified?.date}}" formControlName='date' required>
+</div>
+
+<div>
+  <p>Przebieg: </p>
+  <input type="text" value="{{entryBeingModified?.mileage}}" formControlName='mileage' required>
+</div>
+
+<div>
+  <p>Koszt: </p>
+  <input type="text" value="{{entryBeingModified?.cost}}" formControlName='cost' required>
+</div>
+
+  <div *ngIf="entryBeingModified?.type === 'gasoline'">
+    <p>Litraż paliwa: </p>
+    <input type="text" value="{{entryBeingModified?.gasolineVolume}}" formControlName='gasolineVolume' required>
+  </div>
+
+<div>
+  <p>Typ: </p>
+  <select name="type" value="{{entryBeingModified?.type}}" formControlName='type' required>
+    <option value="gasoline">Tankowanie</option>
+    <option value="repair">Naprawa</option>
+    <option value="maintenance">Utrzymanie</option>
+  </select>
+</div>
+
+<div>
+  <p>Opis: </p>
+  <input type="text" value="{{entryBeingModified?.description}}" formControlName='description'>
+</div>
+
+<button mat-button type="submit" [disabled]="entryForm.invalid">{{action === 'edit' ? 'Edytuj' : 'Dodaj wpis'}}sdfs</button>
+</form>
+<button mat-button (click)="goBack()">Wróć</button>
+
+

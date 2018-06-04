@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyD89FyO7hjw4TVUTMdaZaX8nDcD5Ia0F5U',
+    authDomain: 'bottomless-well.firebaseapp.com',
+    databaseURL: 'https://bottomless-well.firebaseio.com',
+    projectId: 'bottomless-well',
+    storageBucket: 'bottomless-well.appspot.com',
+    messagingSenderId: '637507313240'
+  }
 };

@@ -1,0 +1,42 @@
+<div class="car-info">
+  <p class="entry-title">Samochód: </p> <p class="entry-value">{{car.type}}</p>
+</div>
+
+<hr>
+
+<div class="entry">
+  <p class="entry-title">Średnie spalanie: </p>
+  <p class="entry-value">{{round(summarizedData.totalGasolineConsumption/((summarizedData.totalDistance-car.initialDistance)/100), 1)}} l / 100 km </p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Przejechany dystans: </p>
+  <p class="entry-value">{{(summarizedData.totalDistance-car.initialDistance)/1000}} kkm </p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Całkowity koszt benzyny: </p>
+  <p class="entry-value">{{summarizedData.totalGasolineCost}} zł</p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Średni koszt benzyny na 100 km: </p>
+  <p class="entry-value">{{round(summarizedData.totalGasolineCost/((summarizedData.totalDistance-car.initialDistance)/100), 2)}} zł / 100 km</p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Średni koszt całkowity na 100 km: </p>
+  <p class="entry-value">{{round(summarizedData.totalCost/((summarizedData.totalDistance-car.initialDistance)/100), 2)}} zł / 100 km</p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Koszt całkowity: </p>
+  <p class="entry-value">{{summarizedData.totalCost}} zł</p>
+</div>
+
+<div class="entry">
+  <p class="entry-title">Koszt całkowity na 100 km wliczając kupno: </p>
+  <p class="entry-value">{{round((summarizedData.totalCost+car.cost)/((summarizedData.totalDistance-car.initialDistance)/100), 2)}} zł / 100 km</p>
+</div>
+
+<app-entries-table></app-entries-table>

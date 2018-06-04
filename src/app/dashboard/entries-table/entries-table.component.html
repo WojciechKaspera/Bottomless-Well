@@ -1,0 +1,37 @@
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort matSortActive="created">
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Data </mat-header-cell>
+    <mat-cell *matCellDef="let entry"> {{entry.date}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cost">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Koszt </mat-header-cell >
+    <mat-cell *matCellDef="let entry"> {{entry.cost}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Typ </mat-header-cell >
+    <mat-cell class="cell-type" *matCellDef="let entry"> {{entry.type}}   <div class="icon-details" *ngIf="entry.description">?<div class="entry-details"><p>{{entry.description}}</p></div></div>  </mat-cell>
+  </ng-container>
+
+    <ng-container matColumnDef="mileage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Przebieg </mat-header-cell >
+      <mat-cell *matCellDef="let entry"> {{entry.mileage}} </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell >
+    <mat-cell *matCellDef="let entry">
+    <button mat-button class="btn" (click)="editEntry(entry.id)">Edit</button>
+    <button mat-button class="btn" (click)="removeEntry(entry.id)">Delete</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+</mat-table>
+</div>
+
+<button mat-button (click)="addNew()">Dodaj nowy wpis</button>
